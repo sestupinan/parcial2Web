@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Card, Button } from "react-bootstrap";
+import { Table, Card, Button, Badge } from "react-bootstrap";
 //import Detail from "./Detail";
 import useData from "./useData";
 import { FormattedDate, FormattedPlural, FormattedNumber } from "react-intl";
@@ -36,37 +36,33 @@ function Tabla() {
 
   return (
     <div>
-      <h1>{Title()}</h1>
+      <h1 style={{textAlign: "left"}}>{Title()}</h1>
       <div className="row">
-        <div className="col-8">
+        <div className="col-10">
           <Table striped bordered hover>
-            <thead>{TableHeaders()}</thead>
+            <thead className="thead-dark">{TableHeaders()}</thead>
             <tbody>
               {data.map((movie) => {
                 count += 1;
                 return (
                   <tr onClick={() => showDetail(movie)}>
                     <td key={"c" + count}> {count}</td>
+                    <td key={movie.ThumbnailImage}><img src={movie.ThumbnailImage} height="60px" /></td>
                     <td key={movie.name}>{movie.name}</td>
-                    <td key={movie.directedBy}>{movie.directedBy}</td>
-                    <td key={movie.country}>{movie.country}</td>
-                    <td key={"bud" + movie.budget}>
-                    {movie.budget} <FormattedPlural
-                        value={movie.budget}
-                        one={Plural()[0]}
-                        other={Plural()[1]}
-                      />
+                    <td key={movie.description}>{movie.description}</td>
+                    <td key={"bud" + movie.height}>
+                    <FormattedNumber value={movie.height} />
                       
                     </td>
-                    <td key={movie.releaseDate}>
-                      <FormattedDate
-                        value={new Date(movie.releaseDate)}
-                        year="numeric"
-                        month="numeric"
-                        day="numeric"
-                      />
+                    <td key={"bud" + movie.weight}>
+                    <FormattedNumber value={movie.weight}/>
+                      
                     </td>
-                    <td key={movie.views}><FormattedNumber value={movie.views}/></td>
+                    <td key={movie.views}>{movie.type.map((tipo)=>{
+                      return(
+                        <Badge variant="secondary">{tipo}</Badge>
+                      );
+                    })}</td>
                   </tr>
                 );
               })}
@@ -74,7 +70,7 @@ function Tabla() {
           </Table>
         </div>
         <div className="col-4" id="detail">
-          <Detail></Detail>
+          
         </div>
       </div>
     </div>
@@ -83,10 +79,10 @@ function Tabla() {
 
 function Title(){
   if (navigator.language.startsWith("es") ) {
-    return "Películas";
+    return "Pokemóns más buscados";
   }
   else{
-    return "Movies"
+    return "Most wanted Pokemons"
   }
 }
 
@@ -105,24 +101,24 @@ function TableHeaders() {
     return (
       <tr>
         <th>#</th>
+        <th>Imagen</th>
         <th>Nombre</th>
-        <th>Dirijido por</th>
-        <th>País</th>
-        <th>Presupuesto</th>
-        <th>Lanzamiento</th>
-        <th>Visualizaciones</th>
+        <th>Descripción</th>
+        <th>Altura</th>
+        <th>Peso</th>
+        <th>Tipo</th>
       </tr>
     );
   } else {
     return (
       <tr>
         <th>#</th>
+        <th>Image</th>
         <th>Name</th>
-        <th>Directed by</th>
-        <th>Country</th>
-        <th>Budget</th>
-        <th>Release</th>
-        <th>Views</th>
+        <th>Description</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Type</th>
       </tr>
     );
   }

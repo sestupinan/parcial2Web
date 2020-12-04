@@ -22,7 +22,7 @@ function Graph() {
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-      const y = d3.scaleLinear().domain([0, 10000000]).range([iheight, 0]);
+      const y = d3.scaleLinear().domain([0, 1200]).range([iheight, 0]);
 
       const x = d3
         .scaleBand()
@@ -38,8 +38,8 @@ function Graph() {
         .attr("class", "bar")
         .style("fill", "steelblue")
         .attr("x", (d) => x(d.name))
-        .attr("y", (d) => y(d.views))
-        .attr("height", (d) => iheight - y(d.views))
+        .attr("y", (d) => y(d.height))
+        .attr("height", (d) => iheight - y(d.height))
         .attr("width", x.bandwidth());
 
       g.append("g")
