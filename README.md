@@ -1,6 +1,6 @@
 # parcial2Web
 
-Realizado po: Santiago Estupiñan - 201813414
+Realizado por: Santiago Estupiñan - 201813414
 
 ## Ejecución
 
