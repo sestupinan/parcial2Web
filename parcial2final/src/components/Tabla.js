@@ -36,8 +36,10 @@ function Tabla() {
 
   return (
     <div>
-      <h1 style={{textAlign: "left"}}>{Title()}</h1>
+      
+      <h1 style={{textAlign: "center"}}>{Title()}</h1>
       <div className="row">
+      <div className="col-1"></div>
         <div className="col-10">
           <Table striped bordered hover>
             <thead className="thead-dark">{TableHeaders()}</thead>
